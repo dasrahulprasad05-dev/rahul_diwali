@@ -5,10 +5,9 @@ import './Fireworks.css';
 function Fireworks({ onNext }) {
   const canvasRef = useRef(null);
   const engineRef = useRef(null);
+  const buttonRef = useRef(null);
   const [clickCount, setClickCount] = useState(0);
   const [showFinale, setShowFinale] = useState(false);
-  const [isShaking, setIsShaking] = useState(false);
-  const [showFlash, setShowFlash] = useState(false);
   const maxClicks = 5;
 
   // Initialize fireworks engine
@@ -23,7 +22,7 @@ function Fireworks({ onNext }) {
       engine.resize(window.innerWidth, window.innerHeight);
     };
     resize();
-    window.addEventListener('resize', resize);
+    window.addEventListener('resize', resize, { passive: true });
 
     engine.start();
 
@@ -39,27 +38,25 @@ function Fireworks({ onNext }) {
     const newCount = clickCount + 1;
     setClickCount(newCount);
 
-    // Trigger flash
-    setShowFlash(true);
-    setTimeout(() => setShowFlash(false), 600);
-
-    // Shake button
-    setIsShaking(true);
-    setTimeout(() => setIsShaking(false), 600);
+    // Button animation via DOM class (no React re-render overhead)
+    if (buttonRef.current) {
+      buttonRef.current.classList.remove('bounce');
+      // trigger reflow
+      void buttonRef.current.offsetWidth;
+      buttonRef.current.classList.add('bounce');
+    }
 
     if (newCount >= maxClicks) {
-      // Grand finale!
       if (engineRef.current) {
         engineRef.current.addGrandFinale();
       }
       setTimeout(() => {
         setShowFinale(true);
-      }, 2000);
+      }, 2200);
     } else {
-      // Regular firework
       if (engineRef.current) {
         engineRef.current.addFirework();
-        engineRef.current.addConfetti(30);
+        engineRef.current.addConfetti(18);
       }
     }
   }, [clickCount]);
@@ -67,23 +64,6 @@ function Fireworks({ onNext }) {
   return (
     <div className="fireworks-section">
       <canvas ref={canvasRef} className="fireworks-canvas" />
-
-      {showFlash && <div className="screen-flash" />}
-
-      {/* Floating sparkle decorations */}
-      <div className="sparkle-container">
-        {Array.from({ length: 12 }).map((_, i) => (
-          <div
-            key={i}
-            className="floating-sparkle"
-            style={{
-              left: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 8}s`,
-              animationDuration: `${6 + Math.random() * 6}s`,
-            }}
-          />
-        ))}
-      </div>
 
       {!showFinale ? (
         <div className="fireworks-ui">
@@ -96,7 +76,8 @@ function Fireworks({ onNext }) {
           </div>
 
           <button
-            className={`celebrate-btn ${isShaking ? 'shake' : ''}`}
+            ref={buttonRef}
+            className="celebrate-btn"
             onClick={handleCelebrate}
             disabled={clickCount >= maxClicks}
           >
@@ -123,4 +104,3 @@ function Fireworks({ onNext }) {
 }
 
 export default Fireworks;
-

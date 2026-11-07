@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import DecorativeLights from './DecorativeLights';
 import './WelcomeScreen.css';
 
 const TITLE_TEXT = 'The Festival of Lights';
@@ -113,6 +114,9 @@ function WelcomeScreen({ onNext }) {
 
   return (
     <div className="welcome-screen">
+      {/* Hanging Festive Fairy Lights across the top */}
+      <DecorativeLights />
+
       {/* Background stars */}
       <div className="stars-container">
         {Array.from({ length: typeof window !== 'undefined' && window.innerWidth < 768 ? 25 : 50 }).map((_, i) => (

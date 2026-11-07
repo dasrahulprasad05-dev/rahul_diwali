@@ -1,0 +1,205 @@
+/* ─── Banana Trees (Traditional Indian Festive Decoration) ─── */
+
+.banana-tree-container {
+  position: absolute;
+  bottom: 0;
+  width: 240px;
+  height: 500px;
+  pointer-events: none;
+  z-index: 8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.banana-tree-container.side-left {
+  left: 2%;
+  transform-origin: bottom center;
+  animation: treeSwayLeft 7s ease-in-out infinite alternate;
+}
+
+.banana-tree-container.side-right {
+  right: 2%;
+  transform-origin: bottom center;
+  animation: treeSwayRight 7.5s ease-in-out infinite alternate;
+}
+
+.banana-tree-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.65));
+}
+
+/* ─── Gentle Tree Sway Animations ─── */
+
+@keyframes treeSwayLeft {
+  0% {
+    transform: rotate(0deg) skewX(0deg);
+  }
+  50% {
+    transform: rotate(1.2deg) skewX(0.8deg);
+  }
+  100% {
+    transform: rotate(-0.8deg) skewX(-0.5deg);
+  }
+}
+
+@keyframes treeSwayRight {
+  0% {
+    transform: rotate(0deg) skewX(0deg);
+  }
+  50% {
+    transform: rotate(-1.2deg) skewX(-0.8deg);
+  }
+  100% {
+    transform: rotate(0.8deg) skewX(0.5deg);
+  }
+}
+
+/* ─── Base Diya Under Tree ─── */
+
+.tree-base-diya {
+  position: absolute;
+  bottom: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 10;
+}
+
+.side-left .tree-base-diya {
+  left: 55px;
+}
+
+.side-right .tree-base-diya {
+  right: 55px;
+}
+
+.diya-flame-tree {
+  width: 12px;
+  height: 22px;
+  background: linear-gradient(to top, #FF6B00, #FFD700, #FFFFFF);
+  border-radius: 50% 50% 50% 50% / 70% 70% 30% 30%;
+  position: relative;
+  animation: flameFlicker 0.15s ease-in-out infinite alternate;
+  box-shadow:
+    0 0 8px #FFD700,
+    0 0 16px rgba(255, 165, 0, 0.7),
+    0 0 28px rgba(255, 107, 0, 0.4);
+}
+
+.diya-flame-core {
+  position: absolute;
+  width: 6px;
+  height: 14px;
+  background: linear-gradient(to top, #FFA500, #FFF8E1, #FFFFFF);
+  border-radius: 50% 50% 50% 50% / 70% 70% 30% 30%;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.diya-glow-tree {
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 165, 0, 0.35), rgba(255, 215, 0, 0.15), transparent 70%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: glowPulse 2s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.diya-terracotta-bowl {
+  width: 38px;
+  height: 14px;
+  background: linear-gradient(135deg, #cd7f32, #8B4513, #654321);
+  border-radius: 0 0 50% 50%;
+  border-top: 2.5px solid #daa520;
+  box-shadow:
+    0 3px 6px rgba(0, 0, 0, 0.5),
+    0 0 10px rgba(255, 165, 0, 0.3);
+  margin-top: -3px;
+}
+
+/* ─── Responsive Design ─── */
+
+/* Large Tablets & Medium Desktops */
+@media (max-width: 1200px) {
+  .banana-tree-container {
+    width: 200px;
+    height: 420px;
+  }
+}
+
+/* Tablets & Small Laptops */
+@media (max-width: 900px) {
+  .banana-tree-container {
+    width: 170px;
+    height: 360px;
+    opacity: 0.95;
+  }
+  .banana-tree-container.side-left {
+    left: 0;
+  }
+  .banana-tree-container.side-right {
+    right: 0;
+  }
+  .side-left .tree-base-diya {
+    left: 40px;
+  }
+  .side-right .tree-base-diya {
+    right: 40px;
+  }
+}
+
+/* Mobile Devices (Portrait) */
+@media (max-width: 768px) {
+  .banana-tree-container {
+    width: 140px;
+    height: 290px;
+    bottom: -15px; /* sit anchored nicely at bottom edge */
+    z-index: 6; /* stay behind card & buttons */
+    opacity: 0.88;
+  }
+  .banana-tree-container.side-left {
+    left: -15px; /* peek out gracefully from corners without crowding card */
+  }
+  .banana-tree-container.side-right {
+    right: -15px;
+  }
+  .side-left .tree-base-diya {
+    left: 35px;
+  }
+  .side-right .tree-base-diya {
+    right: 35px;
+  }
+  .diya-terracotta-bowl {
+    width: 28px;
+    height: 10px;
+  }
+  .diya-flame-tree {
+    width: 9px;
+    height: 16px;
+  }
+}
+
+/* Small Android Phones (under 400px width) */
+@media (max-width: 400px) {
+  .banana-tree-container {
+    width: 115px;
+    height: 240px;
+    bottom: -10px;
+    opacity: 0.82;
+  }
+  .banana-tree-container.side-left {
+    left: -20px;
+  }
+  .banana-tree-container.side-right {
+    right: -20px;
+  }
+}

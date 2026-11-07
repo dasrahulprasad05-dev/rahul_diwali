@@ -1,0 +1,238 @@
+/* ─── Decorative Lights (Home Decor & Christmas/Diwali Fairy Lights) ─── */
+
+.decorative-lights-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 90px;
+  pointer-events: none;
+  z-index: 15;
+  overflow: visible;
+}
+
+/* ─── Wire SVG ────────────────────────────────────────── */
+
+.lights-wire-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 55px;
+  overflow: visible;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+}
+
+/* ─── Toran / Marigold Garland ────────────────────────── */
+
+.toran-garland {
+  position: absolute;
+  top: 6px;
+  left: 0;
+  width: 100%;
+  height: 12px;
+  display: flex;
+  pointer-events: none;
+}
+
+.marigold-flower {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  transform: translate(-50%, 0);
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.4));
+}
+
+.marigold-flower.orange {
+  background: radial-gradient(circle, #FFA500, #FF6B00 70%, #D43F00);
+  box-shadow: 0 0 6px rgba(255, 107, 0, 0.6);
+}
+
+.marigold-flower.yellow {
+  background: radial-gradient(circle, #FFF275, #FFD700 70%, #FF9F1C);
+  box-shadow: 0 0 6px rgba(255, 215, 0, 0.6);
+}
+
+/* ─── Bulbs Container ─────────────────────────────────── */
+
+.bulbs-container {
+  position: absolute;
+  top: 8px;
+  left: 0;
+  width: 100%;
+  height: 50px;
+}
+
+.fairy-bulb-unit {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: translateX(-50%);
+  transition: transform 0.3s ease;
+}
+
+.bulb-socket {
+  width: 5px;
+  height: 5px;
+  background: #2a3439;
+  border-radius: 1px 1px 0 0;
+  border: 0.5px solid #111;
+}
+
+.bulb-glass {
+  width: 9px;
+  height: 14px;
+  border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+  position: relative;
+  animation: bulbTwinkle ease-in-out infinite alternate;
+}
+
+.bulb-filament {
+  position: absolute;
+  top: 3px;
+  left: 50%;
+  width: 2px;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 1px;
+  transform: translateX(-50%);
+  filter: blur(0.5px);
+}
+
+.bulb-light-cone {
+  width: 28px;
+  height: 38px;
+  margin-top: -2px;
+  opacity: 0.35;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: conePulse ease-in-out infinite alternate;
+}
+
+@keyframes bulbTwinkle {
+  0% {
+    opacity: 0.75;
+    transform: scale(0.92);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+  100% {
+    opacity: 0.85;
+    transform: scale(1);
+  }
+}
+
+@keyframes conePulse {
+  0% {
+    opacity: 0.2;
+    transform: scale(0.85);
+  }
+  100% {
+    opacity: 0.45;
+    transform: scale(1.15);
+  }
+}
+
+/* ─── Corner Curtain Drops ────────────────────────────── */
+
+.corner-drops {
+  position: absolute;
+  top: 10px;
+  display: flex;
+  gap: 14px;
+  z-index: 14;
+}
+
+.left-drops {
+  left: 18px;
+}
+
+.right-drops {
+  right: 18px;
+}
+
+.hanging-drop-line {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.drop-wire {
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(255, 215, 0, 0.4), rgba(255, 255, 255, 0.15));
+}
+
+.drop-bulb {
+  width: 8px;
+  height: 12px;
+  border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+  margin-top: -2px;
+  animation: bulbTwinkle 1.8s ease-in-out infinite alternate;
+}
+
+/* ─── Mobile Responsiveness ───────────────────────────── */
+
+@media (max-width: 768px) {
+  .decorative-lights-wrapper {
+    height: 70px;
+  }
+  .lights-wire-svg {
+    height: 40px;
+  }
+  .bulb-glass {
+    width: 7px;
+    height: 11px;
+  }
+  .bulb-light-cone {
+    width: 20px;
+    height: 26px;
+  }
+  .marigold-flower {
+    width: 7px;
+    height: 7px;
+  }
+  .corner-drops {
+    gap: 8px;
+  }
+  .left-drops {
+    left: 8px;
+  }
+  .right-drops {
+    right: 8px;
+  }
+  .hanging-drop-line:nth-child(1) {
+    height: 100px !important;
+  }
+  .hanging-drop-line:nth-child(2) {
+    height: 75px !important;
+  }
+  .hanging-drop-line:nth-child(3) {
+    height: 50px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .decorative-lights-wrapper {
+    height: 55px;
+  }
+  .bulb-glass {
+    width: 6px;
+    height: 9px;
+  }
+  .bulb-socket {
+    width: 4px;
+    height: 3px;
+  }
+  .bulb-light-cone {
+    display: none; /* remove for extra mobile smoothness */
+  }
+  .corner-drops {
+    display: none; /* keep screen clean on narrow mobile */
+  }
+}

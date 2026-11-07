@@ -1,5 +1,7 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import sound from '../utils/audio';
+import DecorativeLights from './DecorativeLights';
+import BananaTree from './BananaTree';
 import './DiwaliCard.css';
 
 function DiwaliCard({ onNext }) {
@@ -34,6 +36,13 @@ function DiwaliCard({ onNext }) {
 
   return (
     <div className="card-section">
+      {/* Hanging Festive Fairy Lights across the top */}
+      <DecorativeLights />
+
+      {/* Two Traditional Festive Banana Trees Framing the Screen */}
+      <BananaTree side="left" />
+      <BananaTree side="right" />
+
       {/* Background */}
       <div className="card-bg-glow"></div>
 

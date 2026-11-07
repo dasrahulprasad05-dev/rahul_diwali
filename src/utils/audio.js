@@ -320,3 +320,4 @@ class SoundManager {
 
 const sound = new SoundManager();
 export default sound;
+

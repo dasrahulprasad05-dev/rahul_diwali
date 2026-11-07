@@ -53,9 +53,10 @@
 .card-instruction {
   font-family: 'Poppins', sans-serif;
   font-size: clamp(0.85rem, 1.5vw, 1rem);
-  color: rgba(255, 215, 0, 0.6);
+  color: rgba(255, 215, 0, 0.7);
   letter-spacing: 2px;
-  z-index: 10;
+  z-index: 12;
+  margin-top: 36px;
   animation: fadeIn 1s ease-out;
 }
 
@@ -301,14 +302,22 @@
 /* ─── Responsive ──────────────────────────────────────── */
 
 @media (max-width: 768px) {
-  .card-section { height: 100dvh; gap: 20px; padding: 20px; }
+  .card-section {
+    height: 100dvh;
+    gap: 16px;
+    padding: 16px;
+    overflow: hidden;
+  }
+  .card-instruction {
+    margin-top: 22px;
+    font-size: 0.8rem;
+  }
   .card-3d { width: 260px; height: 360px; }
   .card-front-content { padding: 30px 20px; gap: 12px; }
   .card-back-content { padding: 30px 20px; gap: 14px; }
   .card-diya-icon { font-size: 2.5rem; }
   .card-title { font-size: 1.8rem; }
   .card-subtitle { font-size: 0.75rem; letter-spacing: 3px; }
-  .card-instruction { font-size: 0.8rem; }
   .card-continue-btn { padding: 10px 28px; font-size: 0.85rem; }
   .card-message { font-size: 0.9rem; line-height: 1.6; }
   .card-message-sub { font-size: 0.8rem; }

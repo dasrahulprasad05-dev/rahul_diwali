@@ -246,27 +246,26 @@
   font-family: 'Playfair Display', serif;
   font-size: clamp(2.2rem, 6vw, 4.5rem);
   font-weight: 700;
-  background: linear-gradient(135deg, #FFD700, #FFA500, #FFD700, #f0c040);
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #FFD700 !important;
+  text-shadow:
+    0 0 15px rgba(255, 215, 0, 0.7),
+    0 0 30px rgba(255, 165, 0, 0.5),
+    0 0 60px rgba(255, 107, 0, 0.3);
   line-height: 1.2;
   margin: 0;
 }
 
 .title-letter {
   display: inline-block;
+  color: #FFD700 !important;
   opacity: 0;
-  transform: translateY(30px) scale(0.5);
-  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  filter: blur(8px);
+  transform: translateY(20px) scale(0.6);
+  transition: opacity 0.4s ease-out, transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .title-letter.visible {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-  filter: blur(0);
+  opacity: 1 !important;
+  transform: translateY(0) scale(1) !important;
 }
 
 /* ─── Divider ─────────────────────────────────────────── */

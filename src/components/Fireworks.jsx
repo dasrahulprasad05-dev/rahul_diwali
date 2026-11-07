@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState, useCallback } from 'react';
 import FireworksEngine from '../animations/fireworks';
+import sound from '../utils/audio';
 import './Fireworks.css';
 
 function Fireworks({ onNext }) {
@@ -38,6 +39,12 @@ function Fireworks({ onNext }) {
     const newCount = clickCount + 1;
     setClickCount(newCount);
 
+    // Audio effects for rocket & explosion
+    sound.playWhoosh();
+    setTimeout(() => {
+      sound.playCracker();
+    }, 380);
+
     // Button animation via DOM class (no React re-render overhead)
     if (buttonRef.current) {
       buttonRef.current.classList.remove('bounce');
@@ -50,6 +57,11 @@ function Fireworks({ onNext }) {
       if (engineRef.current) {
         engineRef.current.addGrandFinale();
       }
+      // Finale sounds
+      setTimeout(() => sound.playCracker(), 700);
+      setTimeout(() => sound.playCracker(), 1100);
+      setTimeout(() => sound.playSparkle(), 1800);
+
       setTimeout(() => {
         setShowFinale(true);
       }, 2200);

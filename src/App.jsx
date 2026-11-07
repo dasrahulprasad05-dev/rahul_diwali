@@ -4,6 +4,7 @@ import DiwaliCard from './components/DiwaliCard';
 import Fireworks from './components/Fireworks';
 import NameReveal from './components/NameReveal';
 import ShareCard from './components/ShareCard';
+import sound from './utils/audio';
 
 const SECTIONS = ['welcome', 'card', 'fireworks', 'nameReveal', 'share'];
 
@@ -110,7 +111,8 @@ function App() {
   }, [isMobile]);
 
   const toggleMusic = () => {
-    setIsPlaying((prev) => !prev);
+    const active = sound.toggleMusic();
+    setIsPlaying(active);
   };
 
   const renderSection = () => {
@@ -122,7 +124,7 @@ function App() {
       case 'fireworks':
         return <Fireworks onNext={goToNext} />;
       case 'nameReveal':
-        return <NameReveal onNext={goToNext} />;
+        return <NameReveal onNext={goToNext} initialName={userName} />;
       case 'share':
         return <ShareCard userName={userName} onRestart={goToStart} />;
       default:

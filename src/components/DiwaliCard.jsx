@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
+import sound from '../utils/audio';
 import './DiwaliCard.css';
 
 function DiwaliCard({ onNext }) {
@@ -28,6 +29,7 @@ function DiwaliCard({ onNext }) {
 
   const handleClick = () => {
     setIsFlipped(!isFlipped);
+    sound.playBell(isFlipped ? 440 : 660);
   };
 
   return (

@@ -1,49 +1,77 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
+import sound from '../utils/audio';
 import './NameReveal.css';
 
-function NameReveal({ onNext }) {
-  const [name, setName] = useState('');
+function NameReveal({ onNext, initialName = '' }) {
+  const [name, setName] = useState(initialName || '');
   const [isRevealed, setIsRevealed] = useState(false);
   const [lettersVisible, setLettersVisible] = useState([]);
   const [showMessage, setShowMessage] = useState(false);
   const [showRangoli, setShowRangoli] = useState(false);
 
-  // Check URL params for pre-filled name
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const urlName = params.get('name');
-    if (urlName) {
-      setName(decodeURIComponent(urlName));
-    }
-  }, []);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!name.trim()) return;
+  const triggerReveal = useCallback((targetName) => {
+    const raw = (targetName && typeof targetName === 'string') ? targetName.trim() : '';
+    const finalName = raw || 'Friend';
+    setName(finalName);
     setIsRevealed(true);
+    setLettersVisible([]);
 
-    // Letter-by-letter animation
-    const letters = name.trim().split('');
+    // Play auspicious bell/sparkle sound
+    sound.playBell(587); // D5 temple chime
+
+    const letters = finalName.split('');
+
+    // Letter-by-letter reveal
     letters.forEach((_, i) => {
       setTimeout(() => {
         setLettersVisible((prev) => [...prev, i]);
-      }, 300 + i * 120);
+      }, 150 + i * 80);
     });
 
-    // Show message after name reveal
+    // Safeguard: Ensure ALL letters are revealed
     setTimeout(() => {
+      setLettersVisible(letters.map((_, i) => i));
       setShowMessage(true);
-    }, 300 + letters.length * 120 + 500);
+      sound.playSparkle();
+    }, 150 + letters.length * 80 + 250);
 
-    // Show rangoli after message
+    // Show rangoli pattern
     setTimeout(() => {
       setShowRangoli(true);
-    }, 300 + letters.length * 120 + 1200);
+    }, 150 + letters.length * 80 + 750);
+  }, []);
+
+  // Check URL params or initialName for pre-filled name on mount
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const urlName = params.get('name') || initialName;
+    if (urlName && urlName.trim()) {
+      const clean = decodeURIComponent(urlName).trim();
+      setName(clean);
+      triggerReveal(clean);
+    }
+  }, [initialName, triggerReveal]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const clean = name.trim();
+    if (!clean) return;
+    triggerReveal(clean);
+  };
+
+  const handleEditName = () => {
+    setIsRevealed(false);
+    setShowMessage(false);
+    setShowRangoli(false);
+    setLettersVisible([]);
   };
 
   const handleContinue = () => {
-    onNext(name.trim());
+    const clean = name.trim() || 'Friend';
+    onNext(clean);
   };
+
+  const displayName = name.trim() || 'Friend';
 
   return (
     <div className="name-section">
@@ -135,7 +163,7 @@ function NameReveal({ onNext }) {
           <div className="name-display">
             <div className="name-label">Dear</div>
             <h1 className="revealed-name">
-              {name.trim().split('').map((letter, i) => (
+              {displayName.split('').map((letter, i) => (
                 <span
                   key={i}
                   className={`name-letter ${lettersVisible.includes(i) ? 'visible' : ''}`}
@@ -144,6 +172,9 @@ function NameReveal({ onNext }) {
                 </span>
               ))}
             </h1>
+            <button className="edit-name-btn" onClick={handleEditName}>
+              ✏️ Change Name
+            </button>
           </div>
 
           {/* Personalized message */}
@@ -188,4 +219,3 @@ function NameReveal({ onNext }) {
 }
 
 export default NameReveal;
-

@@ -1,0 +1,324 @@
+/* ─── Card Section ────────────────────────────────────── */
+
+.card-section {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  background: linear-gradient(180deg, #050510 0%, #0a0a1a 40%, #0d1137 100%);
+}
+
+.card-bg-glow {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 215, 0, 0.06), transparent 70%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: bgGlowPulse 4s ease-in-out infinite;
+}
+
+@keyframes bgGlowPulse {
+  0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+  50% { opacity: 1; transform: translate(-50%, -50%) scale(1.3); }
+}
+
+/* ─── Card Sparkles ───────────────────────────────────── */
+
+.card-sparkle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: #FFD700;
+  box-shadow: 0 0 6px rgba(255, 215, 0, 0.5);
+  animation: sparkleFloat ease-in-out infinite;
+  z-index: 1;
+}
+
+@keyframes sparkleFloat {
+  0%, 100% { opacity: 0; transform: scale(0); }
+  50% { opacity: 1; transform: scale(1); }
+}
+
+/* ─── Card Instruction ────────────────────────────────── */
+
+.card-instruction {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(0.85rem, 1.5vw, 1rem);
+  color: rgba(255, 215, 0, 0.6);
+  letter-spacing: 2px;
+  z-index: 10;
+  animation: fadeIn 1s ease-out;
+}
+
+/* ─── 3D Card Scene ───────────────────────────────────── */
+
+.card-scene {
+  perspective: 1200px;
+  z-index: 10;
+}
+
+.card-3d {
+  width: clamp(280px, 50vw, 400px);
+  height: clamp(380px, 65vw, 520px);
+  position: relative;
+  transform-style: preserve-3d;
+  cursor: pointer;
+  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  animation: cardFloat 4s ease-in-out infinite;
+}
+
+@keyframes cardFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+.card-3d.flipped {
+  animation: none;
+}
+
+/* ─── Card Faces ──────────────────────────────────────── */
+
+.card-face {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 16px;
+  border: 2px solid rgba(255, 215, 0, 0.4);
+  box-shadow:
+    0 0 30px rgba(255, 215, 0, 0.15),
+    0 20px 60px rgba(0, 0, 0, 0.4),
+    inset 0 0 80px rgba(255, 215, 0, 0.03);
+  overflow: hidden;
+}
+
+.card-front {
+  background: linear-gradient(145deg, #0d0d2b, #15103a, #0a0825);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-back {
+  background: linear-gradient(145deg, #0d0d2b, #15103a, #0a0825);
+  transform: rotateY(180deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ─── Corner Ornaments ────────────────────────────────── */
+
+.card-corner {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-color: #FFD700;
+  border-style: solid;
+  z-index: 2;
+}
+
+.card-corner.top-left {
+  top: 12px;
+  left: 12px;
+  border-width: 2px 0 0 2px;
+  border-radius: 4px 0 0 0;
+}
+
+.card-corner.top-right {
+  top: 12px;
+  right: 12px;
+  border-width: 2px 2px 0 0;
+  border-radius: 0 4px 0 0;
+}
+
+.card-corner.bottom-left {
+  bottom: 12px;
+  left: 12px;
+  border-width: 0 0 2px 2px;
+  border-radius: 0 0 0 4px;
+}
+
+.card-corner.bottom-right {
+  bottom: 12px;
+  right: 12px;
+  border-width: 0 2px 2px 0;
+  border-radius: 0 0 4px 0;
+}
+
+/* ─── Card Front Content ─────────────────────────────── */
+
+.card-front-content {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 40px;
+}
+
+.card-ornament-top,
+.card-ornament-bottom {
+  color: #FFD700;
+  font-size: 0.9rem;
+  letter-spacing: 12px;
+  opacity: 0.7;
+}
+
+.card-diya-icon {
+  font-size: 3.5rem;
+  animation: diyaGlow 2s ease-in-out infinite;
+}
+
+@keyframes diyaGlow {
+  0%, 100% { filter: drop-shadow(0 0 10px rgba(255, 165, 0, 0.4)); }
+  50% { filter: drop-shadow(0 0 25px rgba(255, 165, 0, 0.8)); transform: scale(1.05); }
+}
+
+.card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  background: linear-gradient(135deg, #FFD700, #FFA500, #FFD700);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 3s linear infinite;
+  margin: 0;
+  text-shadow: none;
+}
+
+.card-subtitle {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(0.8rem, 1.5vw, 1rem);
+  color: rgba(255, 215, 0, 0.6);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+
+.card-shine {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent 40%,
+    rgba(255, 215, 0, 0.05) 45%,
+    rgba(255, 215, 0, 0.1) 50%,
+    rgba(255, 215, 0, 0.05) 55%,
+    transparent 60%
+  );
+  animation: cardShine 4s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes cardShine {
+  0% { transform: translateX(-100%) rotate(45deg); }
+  100% { transform: translateX(100%) rotate(45deg); }
+}
+
+/* ─── Card Back Content ──────────────────────────────── */
+
+.card-back-content {
+  text-align: center;
+  padding: 40px 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.card-back-diya {
+  font-size: 2.5rem;
+}
+
+.card-message {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.8;
+  margin: 0;
+}
+
+.card-message .highlight {
+  color: #FFD700;
+  font-weight: 600;
+}
+
+.card-message-sub {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(0.85rem, 1.5vw, 1rem);
+  color: rgba(255, 215, 0, 0.7);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.card-signature {
+  font-size: 1.5rem;
+  margin-top: 10px;
+}
+
+/* ─── Continue Button ─────────────────────────────────── */
+
+.card-continue-btn {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+  font-weight: 500;
+  color: #FFD700;
+  background: rgba(255, 215, 0, 0.08);
+  border: 1.5px solid rgba(255, 215, 0, 0.3);
+  border-radius: 30px;
+  padding: 12px 36px;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  letter-spacing: 1px;
+}
+
+.card-continue-btn:hover {
+  background: rgba(255, 215, 0, 0.15);
+  border-color: #FFD700;
+  box-shadow: 0 0 25px rgba(255, 215, 0, 0.25);
+  transform: scale(1.05);
+}
+
+/* ─── Responsive ──────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  .card-section { height: 100dvh; gap: 20px; padding: 20px; }
+  .card-3d { width: 260px; height: 360px; }
+  .card-front-content { padding: 30px 20px; gap: 12px; }
+  .card-back-content { padding: 30px 20px; gap: 14px; }
+  .card-diya-icon { font-size: 2.5rem; }
+  .card-title { font-size: 1.8rem; }
+  .card-subtitle { font-size: 0.75rem; letter-spacing: 3px; }
+  .card-instruction { font-size: 0.8rem; }
+  .card-continue-btn { padding: 10px 28px; font-size: 0.85rem; }
+  .card-message { font-size: 0.9rem; line-height: 1.6; }
+  .card-message-sub { font-size: 0.8rem; }
+  .card-corner { width: 25px; height: 25px; }
+}
+
+@media (max-width: 380px) {
+  .card-3d { width: 240px; height: 330px; }
+  .card-front-content { padding: 24px 16px; }
+  .card-back-content { padding: 24px 16px; }
+  .card-title { font-size: 1.5rem; }
+}
+

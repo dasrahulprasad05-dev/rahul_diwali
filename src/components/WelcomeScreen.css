@@ -1,0 +1,416 @@
+/* ─── Welcome Screen ─────────────────────────────────── */
+
+.welcome-screen {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, #050510 0%, #0a0a1a 40%, #0d1137 80%, #15103a 100%);
+}
+
+/* ─── Stars ───────────────────────────────────────────── */
+
+.stars-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.star {
+  position: absolute;
+  border-radius: 50%;
+  background: #fff;
+  animation: starTwinkle ease-in-out infinite;
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.6);
+}
+
+@keyframes starTwinkle {
+  0%, 100% { opacity: 0.2; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+/* ─── Mandala Pattern ─────────────────────────────────── */
+
+.mandala-pattern {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, transparent 30%, rgba(255, 215, 0, 0.02) 31%, transparent 32%),
+    radial-gradient(circle, transparent 50%, rgba(255, 215, 0, 0.015) 51%, transparent 52%),
+    radial-gradient(circle, transparent 70%, rgba(255, 215, 0, 0.01) 71%, transparent 72%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  animation: mandalaSpin 60s linear infinite;
+  opacity: 0.5;
+}
+
+.mandala-2 {
+  width: 800px;
+  height: 800px;
+  background:
+    radial-gradient(circle, transparent 20%, rgba(255, 165, 0, 0.015) 21%, transparent 22%),
+    radial-gradient(circle, transparent 40%, rgba(255, 165, 0, 0.01) 41%, transparent 42%),
+    radial-gradient(circle, transparent 60%, rgba(255, 165, 0, 0.008) 61%, transparent 62%),
+    radial-gradient(circle, transparent 80%, rgba(255, 165, 0, 0.005) 81%, transparent 82%);
+  animation: mandalaSpin 90s linear infinite reverse;
+}
+
+@keyframes mandalaSpin {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* ─── Particles Canvas ────────────────────────────────── */
+
+.particles-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* ─── Diya Groups ─────────────────────────────────────── */
+
+.diya-group {
+  position: absolute;
+  bottom: 8%;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.diya-group-left {
+  left: 8%;
+}
+
+.diya-group-right {
+  right: 8%;
+}
+
+/* ─── Diya Component ──────────────────────────────────── */
+
+.diya {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: diyaFloat 4s ease-in-out infinite;
+}
+
+.diya-small {
+  transform: scale(0.7);
+  animation-delay: 0.5s;
+}
+
+.diya-flame-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  height: 40px;
+  margin-bottom: -4px;
+}
+
+.diya-flame {
+  width: 14px;
+  height: 28px;
+  background: linear-gradient(to top, #FF6B00, #FFD700, #FFF8E1);
+  border-radius: 50% 50% 50% 50% / 70% 70% 30% 30%;
+  position: relative;
+  animation: flameFlicker 0.15s ease-in-out infinite alternate;
+  box-shadow:
+    0 0 10px #FFD700,
+    0 0 20px rgba(255, 165, 0, 0.6),
+    0 0 40px rgba(255, 107, 0, 0.3);
+}
+
+.flame-inner {
+  position: absolute;
+  width: 8px;
+  height: 18px;
+  background: linear-gradient(to top, #FFA500, #FFEB3B, #FFFFFF);
+  border-radius: 50% 50% 50% 50% / 70% 70% 30% 30%;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: flameFlicker 0.2s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes flameFlicker {
+  0% {
+    transform: scaleX(1) scaleY(1) translateX(-50%);
+    opacity: 1;
+  }
+  25% {
+    transform: scaleX(0.9) scaleY(1.05) translateX(-48%) rotate(1deg);
+    opacity: 0.95;
+  }
+  50% {
+    transform: scaleX(1.1) scaleY(0.95) translateX(-52%) rotate(-1deg);
+    opacity: 1;
+  }
+  75% {
+    transform: scaleX(0.95) scaleY(1.02) translateX(-50%) rotate(0.5deg);
+    opacity: 0.97;
+  }
+  100% {
+    transform: scaleX(1.05) scaleY(0.98) translateX(-50%) rotate(-0.5deg);
+    opacity: 1;
+  }
+}
+
+.diya-glow {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 165, 0, 0.25), rgba(255, 215, 0, 0.1), transparent);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: glowPulse 2s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+  0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
+  50% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
+}
+
+.diya-base {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.diya-bowl {
+  width: 50px;
+  height: 18px;
+  background: linear-gradient(135deg, #cd7f32, #8B4513, #a0522d);
+  border-radius: 0 0 50% 50%;
+  border-top: 3px solid #daa520;
+  box-shadow:
+    0 4px 8px rgba(0,0,0,0.3),
+    inset 0 -3px 6px rgba(0,0,0,0.2),
+    0 0 15px rgba(255, 165, 0, 0.15);
+}
+
+.diya-foot {
+  width: 30px;
+  height: 6px;
+  background: linear-gradient(135deg, #8B4513, #654321);
+  border-radius: 0 0 4px 4px;
+  margin-top: -1px;
+}
+
+@keyframes diyaFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+/* ─── Welcome Content ─────────────────────────────────── */
+
+.welcome-content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.welcome-subtitle {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(0.9rem, 1.8vw, 1.2rem);
+  color: rgba(255, 215, 0, 0.7);
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  animation: fadeIn 1s ease-out;
+}
+
+.welcome-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.2rem, 6vw, 4.5rem);
+  font-weight: 700;
+  background: linear-gradient(135deg, #FFD700, #FFA500, #FFD700, #f0c040);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.title-letter {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(30px) scale(0.5);
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  filter: blur(8px);
+}
+
+.title-letter.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0);
+}
+
+/* ─── Divider ─────────────────────────────────────────── */
+
+.welcome-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  opacity: 0;
+  transform: scaleX(0);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.welcome-divider.visible {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+.divider-ornament {
+  color: #FFD700;
+  font-size: 14px;
+  animation: sparkle 2s ease-in-out infinite;
+}
+
+.divider-line {
+  width: 120px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #FFD700, transparent);
+}
+
+/* ─── CTA Button ──────────────────────────────────────── */
+
+.cta-button {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  font-weight: 600;
+  color: #0a0a1a;
+  background: linear-gradient(145deg, #FFD700, #FFA500, #FF8C00);
+  border: none;
+  border-radius: 50px;
+  padding: 16px 48px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow:
+    0 0 30px rgba(255, 215, 0, 0.4),
+    0 0 60px rgba(255, 165, 0, 0.2),
+    0 8px 32px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cta-button.visible {
+  opacity: 1;
+  transform: translateY(0);
+  animation: ctaPulse 2.5s ease-in-out infinite 0.6s;
+}
+
+.cta-button::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.3) 50%,
+    transparent 60%
+  );
+  animation: ctaShimmer 3s linear infinite;
+}
+
+@keyframes ctaShimmer {
+  0% { transform: translateX(-100%) rotate(45deg); }
+  100% { transform: translateX(100%) rotate(45deg); }
+}
+
+@keyframes ctaPulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.4), 0 0 60px rgba(255, 165, 0, 0.2);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 40px rgba(255, 215, 0, 0.6), 0 0 80px rgba(255, 165, 0, 0.3), 0 0 120px rgba(255, 69, 0, 0.15);
+  }
+}
+
+.cta-button:hover {
+  transform: scale(1.08) !important;
+  box-shadow:
+    0 0 50px rgba(255, 215, 0, 0.7),
+    0 0 100px rgba(255, 165, 0, 0.4);
+}
+
+.cta-button:active {
+  transform: scale(0.96) !important;
+}
+
+.cta-sparkle {
+  font-size: 1.2em;
+  position: relative;
+  z-index: 1;
+}
+
+.cta-text {
+  position: relative;
+  z-index: 1;
+}
+
+/* ─── Mobile First Responsive ─────────────────────────── */
+
+@media (max-width: 768px) {
+  .welcome-screen {
+    height: 100dvh; /* dynamic viewport height for mobile browsers */
+  }
+  .diya-group-left { left: 2%; }
+  .diya-group-right { right: 2%; }
+  .diya-small { display: none; }
+  .diya { transform: scale(0.8); }
+  .cta-button { padding: 14px 32px; font-size: 0.95rem; }
+  .welcome-content { gap: 18px; padding: 0 20px; }
+  .welcome-title { font-size: clamp(1.8rem, 8vw, 3rem); }
+  .welcome-subtitle { font-size: 0.8rem; letter-spacing: 3px; }
+  .divider-line { width: 80px; }
+  .mandala-pattern { width: 300px; height: 300px; }
+  .mandala-2 { width: 400px; height: 400px; }
+}
+
+@media (max-width: 380px) {
+  .diya-group { display: none; }
+  .welcome-title { font-size: 1.6rem; }
+  .cta-button { padding: 12px 28px; font-size: 0.9rem; }
+  .welcome-content { gap: 14px; }
+}
+
+/* Fix for mobile browsers with address bar */
+@supports (height: 100dvh) {
+  .welcome-screen { height: 100dvh; }
+}
+
